@@ -1,3 +1,5 @@
+```mermaid
+
 classDiagram
 
 &#x20;   class NotificationManager
@@ -19,6 +21,4 @@ classDiagram
 &#x20;   NotificationManager --> PushNotification
 
 &#x20;   NotificationManager --> SMSAdapter
-
-
 
