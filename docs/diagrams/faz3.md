@@ -1,24 +1,12 @@
 ```mermaid
-
 classDiagram
+    class NotificationManager
+    class EmailNotification
+    class SMSNotification
+    class PushNotification
+    class SMSAdapter
 
-&#x20;   class NotificationManager
-
-&#x20;   class EmailNotification
-
-&#x20;   class SMSNotification
-
-&#x20;   class PushNotification
-
-&#x20;   class SMSAdapter
-
-
-
-&#x20;   NotificationManager --> EmailNotification
-
-&#x20;   NotificationManager --> SMSNotification
-
-&#x20;   NotificationManager --> PushNotification
-
-&#x20;   NotificationManager --> SMSAdapter
-
+    NotificationManager --> EmailNotification
+    NotificationManager --> SMSNotification
+    NotificationManager --> PushNotification
+    NotificationManager --> SMSAdapter
