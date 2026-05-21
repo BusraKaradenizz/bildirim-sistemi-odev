@@ -37,3 +37,31 @@ timestamp_email.gonder("Decorator ile zaman damgalı mesaj!")
 # İkisini zincirleme kullanabiliriz
 loglu_timestamp_email = LogDecorator(TimestampDecorator(email))
 loglu_timestamp_email.gonder("Hem loglu hem zaman damgalı mesaj!")
+
+
+
+from notifications.observer import NotificationManager
+from factory import NotificationFactory
+from notifications.external_sms import ExternalSMSService, SMSAdapter
+
+# Observer Pattern kullanımı
+manager = NotificationManager()
+
+# Bildirimleri oluştur
+email = NotificationFactory.create_notification("email")
+sms = NotificationFactory.create_notification("sms")
+push = NotificationFactory.create_notification("push")
+
+# External SMS adapter
+external_service = ExternalSMSService()
+sms_adapter = SMSAdapter(external_service)
+
+# Observer’ları ekle
+manager.attach(email)
+manager.attach(sms)
+manager.attach(push)
+manager.attach(sms_adapter)
+
+# Tek bir notify çağrısı ile hepsine mesaj gönder
+manager.notify("Observer Pattern ile çoklu bildirim!")
+
