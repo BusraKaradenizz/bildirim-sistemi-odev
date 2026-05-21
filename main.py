@@ -18,3 +18,22 @@ from notifications.external_sms import ExternalSMSService, SMSAdapter
 external_service = ExternalSMSService()
 sms_adapter = SMSAdapter(external_service)
 sms_adapter.gonder("Adapter ile gönderilen SMS!")
+
+
+from notifications.decorators import LogDecorator, TimestampDecorator
+from factory import NotificationFactory
+
+# Normal bildirim
+email = NotificationFactory.create_notification("email")
+
+# LogDecorator ile süslenmiş bildirim
+loglu_email = LogDecorator(email)
+loglu_email.gonder("Decorator ile loglu mesaj!")
+
+# TimestampDecorator ile süslenmiş bildirim
+timestamp_email = TimestampDecorator(email)
+timestamp_email.gonder("Decorator ile zaman damgalı mesaj!")
+
+# İkisini zincirleme kullanabiliriz
+loglu_timestamp_email = LogDecorator(TimestampDecorator(email))
+loglu_timestamp_email.gonder("Hem loglu hem zaman damgalı mesaj!")
